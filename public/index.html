@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>512 Day Counter</title>
+  <meta name="description" content="Track 512 days. Each box turns green after a full 24 hours. Synced across devices.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%232e9e5b%22/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <p class="sub" id="status">Ready when you are</p>
+      <h1 class="big"><span id="dayNow">0</span><span class="of"> / 512</span></h1>
+      <p class="sub" id="timeLeft">Press start to begin day 1.</p>
+
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="512" aria-valuenow="0" id="bar">
+        <div class="fill" id="fill"></div>
+      </div>
+
+      <dl class="stats">
+        <div><dt>Completed</dt><dd id="done">0</dd></div>
+        <div><dt>Remaining</dt><dd id="left">512</dd></div>
+        <div><dt>Progress</dt><dd id="pct">0%</dd></div>
+        <div><dt>Started</dt><dd id="startedAt">Not yet</dd></div>
+      </dl>
+
+      <div class="actions">
+        <button class="btn primary" id="startBtn">Start counting</button>
+        <button class="btn primary" id="incBtn" hidden>Increment (+1 day)</button>
+        <button class="btn ghost" id="undoBtn" disabled>Undo</button>
+        <button class="btn ghost danger" id="resetBtn" hidden>Reset to zero</button>
+      </div>
+
+      <form class="setter" id="setForm" autocomplete="off">
+        <label for="setInput">Fix the count</label>
+        <input id="setInput" type="number" inputmode="numeric" min="0" max="512" placeholder="e.g. 10" required>
+        <button class="btn ghost" type="submit">Set days done</button>
+      </form>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    </header>
+
+    <section aria-label="512 day grid">
+      <ol class="grid" id="grid"></ol>
+      <p class="legend">
+        <span><i class="sw grey"></i>Not complete</span>
+        <span><i class="sw now"></i>In progress</span>
+        <span><i class="sw green"></i>24 hours done</span>
+      </p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
